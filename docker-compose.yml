@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres_shortener
+    image: postgres:15.2-alpine3.17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_HOST_AUTH_METHOD: md5
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres-db:/data/postgres
+    ports:
+      - "5432:5432"
+  shortener:
+    image: openjdk:17-jdk
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./build/libs/url-shortener-1.0-SNAPSHOT.jar:/build/libs/url-shortener-1.0-SNAPSHOT.jar
+    command: [ "java", "-jar", "/build/libs/url-shortener-1.0-SNAPSHOT.jar" ]
+
+volumes:
+  postgres-db:
+    driver: local

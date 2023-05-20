@@ -1,0 +1,14 @@
+server:
+  port: ${APP_PORT:9000}
+
+spring:
+  r2dbc:
+    url: ${POSTGRES_REACTIVE_URL:r2dbc:postgresql://postgres:5432/postgres}
+    username: ${POSTGRES_PASSWORD:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+  flyway:
+    url: ${POSTGRES_URL:jdbc:postgresql://postgres:5432/postgres}
+
+shortener:
+  url: http://localhost:${server.port}/
+  max-length: 5
