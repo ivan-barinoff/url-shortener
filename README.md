@@ -38,7 +38,7 @@ API which allows to get the original version of a short URL
 
 ```json
 {
-"shortUrl": "http://localhost:9000/If3MU"
+  "shortUrl": "http://localhost:9000/If3MU"
 }
 ```
 
